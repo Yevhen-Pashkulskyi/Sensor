@@ -1,0 +1,51 @@
+@startuml
+class sensor.view.TemperatureObserver {
++ void update()
+}
+
+class sensor.view.ColorObserver {
++ void update()
+}
+
+abstract class sensor.Observer {
+# Substance substance
++ {abstract}void update()
+}
+
+
+class sensor.Model.Substance {
+- {static} double ZERO_TEMPERATURE
+- {static} double STARTING_WEIGHT
+- {static} int WEIGHT_GAIN
+- List<Observer> observers
+- double temperature
+- double weight
+- String color
++ double getTemperature()
++ void setTemperature(double)
+- void updateProperties()
++ double getWeight()
++ String getColor()
++ void attach(Observer)
++ void notifyAllObservers()
+}
+
+
+class sensor.controller.SensorPatternDemo {
++ {static} void main(String[])
+}
+
+class sensor.view.WeightObserver {
++ void update()
+}
+
+class sensor.controller.ControllerSensor {
++ void start()
+}
+
+
+
+sensor.Observer <|-- sensor.view.TemperatureObserver
+sensor.Observer <|-- sensor.view.ColorObserver
+sensor.Observer <|-- sensor.view.WeightObserver
+@enduml
